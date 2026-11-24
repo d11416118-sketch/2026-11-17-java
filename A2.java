@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
 public class A2 {
+    /**
+     * 主程式（自動猜數字流程）：依序拿候選清單中還沒被排除（不等於 1）的數字當作這次的猜測，
+     * 輸入對方回覆的幾 A 幾 B，把比對結果不相符的候選數字排除（設成 1），並印出仍符合的候選。
+     */
     public static void main(String[] args) {
         int[] a=new int[4];
         int[] b=new int[4];
@@ -37,12 +41,21 @@ public class A2 {
         
         
     }
+    /**
+     * 把四位數 x 拆成各位數字存入陣列：
+     * a[0] 個位、a[1] 十位、a[2] 百位、a[3] 千位（順序跟 11/03 版相反）。
+     */
     public static void cut(int x,int[] a) {
           a[3] = x / 1000;        
           a[2] = (x / 100) % 10;  
           a[1]= (x / 10) % 10;   
           a[0]= x % 10; 
     }
+    /**
+     * 猜數字遊戲的 ?A?B 判定：比較兩組四位數字，
+     * 數字相同且位置相同算 A，數字相同但位置不同算 B。
+     * 回傳 A×10+B（十位數是 A、個位數是 B）。
+     */
     public static int compare(int[] a,int[] b){
         int p=0,q=0;
         for(int i=0;i<a.length;i++){ //a[]
@@ -60,6 +73,9 @@ public class A2 {
         }
          return p*10+q;
     }
+    /**
+     * 分別讀入 A 與 B 的數量，合併成 A×10+B 一個整數回傳。
+     */
     public static int input_answer() {
         int p,q;
         Scanner sc=new Scanner(System.in);
